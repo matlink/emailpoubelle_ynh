@@ -1,0 +1,54 @@
+{
+    "name": "EmailPoubelle",
+    "id": "emailpoubelle",
+    "description": {
+        "en": "Create throwable email address redirected to your real one",
+        "fr": "Créez des adresses email jetables qui redirigent les mails vers votre adresse réelle"
+    },
+    "developer": {
+        "name": "David Mercereau",
+        "email": "david@mercereau.info",
+        "url": "http://www.mercereau.info/sortie-de-la-version-1-0-demailpoubelle-php-email-jetable-auto-hebergeable/"
+    },
+    "multi_instance": "true",
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "ask": {
+                    "en": "Choose a domain for emailpoubelle",
+                    "fr": "Choisissez un domaine pour emailpoubelle"
+                },
+                "example": "domain.org"
+            },
+            {
+                "name": "path",
+                "ask": {
+                    "en": "Choose a path for emailpoubelle",
+                    "fr": "Choisissez un chemin pour emailpoubelle"
+                },
+                "example": "/poubelle",
+                "default": "/poubelle"
+            },
+            {
+                "name": "admin",
+                "ask": {
+                    "en": "Choose an admin user for emailpoubelle",
+                    "fr": "Choisissez un administrateur pour emailpoubelle"
+                },
+                "example": "homer"
+            },
+            {
+                "name": "public_site",
+                "ask": {
+                    "en": "Should this application be public ?",
+                    "fr": "Est-ce que cette application doit visible publiquement ?"
+                },
+                "choices": ["Yes", "No"],
+                "default": "No"
+            }
+
+
+        ]
+    }
+}

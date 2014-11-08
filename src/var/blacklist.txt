@@ -1,0 +1,4 @@
+/^exemple@exemple.com$/
+/.pl$/
+/^exemple[1-9]+@toto.fr$/
+
