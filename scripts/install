@@ -19,8 +19,7 @@ sudo mkdir -p $final_path
 #Download from host
 #wget -O /tmp/emailPoubelle.zip http://forge.zici.fr/p/emailpoubelle-php/source/download/master/
 #unzip /tmp/emailPoubelle.zip
-sudo ls . > /tmp/test
-sudo cp -R src/* $final_path
+sudo cp -R ../src/* $final_path
 sudo chown -R www-data:www-data $final_path
 
 #configuring with given settings
