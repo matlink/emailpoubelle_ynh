@@ -19,41 +19,41 @@ sudo mkdir -p $final_path
 #Download from host
 #wget -O /tmp/emailPoubelle.zip http://forge.zici.fr/p/emailpoubelle-php/source/download/master/
 #unzip /tmp/emailPoubelle.zip
-cp -R src/* $final_path/
-chown -R www-data:www-data $final_path
+sudo cp -R src/* $final_path
+sudo chown -R www-data:www-data $final_path
 
 #configuring with given settings
-cp $final_path/conf-dist.php $final_path/conf.php
-sed -i "s@exemple.fr@$domain@g" $final_path/conf.php
-sed -i "s@exemple.com@$domain@g" $final_path/conf.php
+sudo cp $final_path/conf-dist.php $final_path/conf.php
+sudo sed -i "s@exemple.fr@$domain@g" $final_path/conf.php
+sudo sed -i "s@exemple.com@$domain@g" $final_path/conf.php
 
 #generating random password for database
 db_pwd=$(dd if=/dev/urandom bs=1 count=200 2> /dev/null | tr -c -d '[A-Za-z0-9]' | sed -n 's/\(.\{24\}\).*/\1/p')
 db_user=emailPoubelle
 #write password to the conf file
 
-sed -i "s@motdepassedefou@$db_pwd@g" $final_path/conf.php
+sudo sed -i "s@motdepassedefou@$db_pwd@g" $final_path/conf.php
 
 #initialize database
 sudo yunohost app initdb $db_user -p $db_pwd
 
 #setting aliases
-cp /etc/postfix/main.cf /etc/postfix/main.cf.emailpoubelle.bak
-echo "virtual_alias_maps = hash:$final_path/var/virtual" >> /etc/postfix/main.cf
+sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.emailpoubelle.bak
+sudo echo "virtual_alias_maps = hash:$final_path/var/virtual" >> /etc/postfix/main.cf
 #create the virtual aliases file 
-touch $final_path/var/virtual
-postmap $final_path/var/virtual
-chown www-data $final_path/var/virtual
-chown www-data $final_path/var/virtual.db
+sudo touch $final_path/var/virtual
+sudo postmap $final_path/var/virtual
+sudo chown www-data $final_path/var/virtual
+sudo chown www-data $final_path/var/virtual.db
 #create an alias for deleted junk adresses
-cp /etc/aliases /etc/aliases.emailpoubelle.bak
-echo "devnull:/dev/null" >> /etc/aliases
-newaliases
+sudo cp /etc/aliases /etc/aliases.emailpoubelle.bak
+sudo echo "devnull:/dev/null" >> /etc/aliases
+sudo newaliases
 
 # Modify Nginx configuration file and copy it to Nginx conf directory
-sed -i "s@YNH_EXAMPLE_PATH@$path@g" ../conf/nginx.conf
-sed -i "s@YNH_EXAMPLE_ALIAS@$final_path/@g" ../conf/nginx.conf
-sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
+sudo sed -i "s@YNH_EXAMPLE_PATH@$path@g" ../conf/nginx.conf
+sudo sed -i "s@YNH_EXAMPLE_ALIAS@$final_path/@g" ../conf/nginx.conf
+sudo sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 # If app is public, add url to SSOWat conf as skipped_uris
 if [ "$is_public" = "Yes" ];
 then
