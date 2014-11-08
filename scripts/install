@@ -1,8 +1,6 @@
 #!/bin/bash
 exec > >(tee /tmp/emailpoubelle.log)
 exec 2>&1
-whoami
-sudo su
 app=emailpoubelle
 # Retrieve arguments
 domain=$1
@@ -42,7 +40,9 @@ sudo sed -i "s@motdepassedefou@$db_pwd@g" $final_path/conf.php
 sudo yunohost app initdb $db_user -p $db_pwd
 
 #setting aliases
+sudo chmod g+w /etc/postfix/main.cf
 sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.emailpoubelle.bak
+sudo chmod g-w /etc/postfix/main.cf
 sudo echo "virtual_alias_maps = hash:$final_path/var/virtual" >> /etc/postfix/main.cf
 #create the virtual aliases file 
 sudo touch $final_path/var/virtual
