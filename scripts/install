@@ -17,9 +17,9 @@ fi
 final_path=/var/www/$app
 sudo mkdir -p $final_path
 #Download from host
-wget -O /tmp/emailPoubelle.zip http://forge.zici.fr/p/emailpoubelle-php/source/download/master/
-unzip /tmp/emailPoubelle.zip
-cp -R /tmp/emailpoubelle-php-master/* $final_path/
+#wget -O /tmp/emailPoubelle.zip http://forge.zici.fr/p/emailpoubelle-php/source/download/master/
+#unzip /tmp/emailPoubelle.zip
+cp -R src/* $final_path/
 chown -R www-data:www-data $final_path
 
 #configuring with given settings
