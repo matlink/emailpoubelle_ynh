@@ -1,7 +1,8 @@
 #!/bin/bash
 exec > >(tee /tmp/emailpoubelle.log)
 exec 2>&1
-
+whoami
+sudo su
 app=emailpoubelle
 # Retrieve arguments
 domain=$1
@@ -50,7 +51,9 @@ sudo chown www-data $final_path/var/virtual
 sudo chown www-data $final_path/var/virtual.db
 #create an alias for deleted junk adresses
 sudo cp /etc/aliases /etc/aliases.emailpoubelle.bak
+sudo chmod g+w /etc/aliases
 sudo echo "devnull:/dev/null" >> /etc/aliases
+sudo chmod g-w /etc/aliases
 sudo newaliases
 
 # Modify Nginx configuration file and copy it to Nginx conf directory
