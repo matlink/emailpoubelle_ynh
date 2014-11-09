@@ -45,7 +45,7 @@ sudo yunohost app initdb $db_user -p $db_pwd
 
 #setting postfix to use virtual aliases file
 sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.emailpoubelle.bak #backup it eventually if that causes some issues
-sudo echo "virtual_alias_maps = hash:$final_path/var/virtual" >> /etc/postfix/main.cf
+echo  "virtual_alias_maps = hash:$final_path/var/virtual" | sudo tee -a /etc/postfix/main.cf
 
 #create the virtual aliases file 
 sudo touch $final_path/var/virtual
@@ -55,7 +55,7 @@ sudo chown www-data $final_path/var/virtual.db
 
 #create an alias for deleted junk adresses
 sudo cp /etc/aliases /etc/aliases.emailpoubelle.bak #backup it 
-sudo echo "devnull:/dev/null" >> /etc/aliases
+sudo echo "devnull:/dev/null" | sudo tee -a /etc/aliases
 sudo newaliases
 
 # Modify Nginx configuration file and copy it to Nginx conf directory
