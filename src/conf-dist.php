@@ -41,12 +41,14 @@ define('CRON', false);
 define('FICHIERALIAS', DATA.'/virtual');
 define('BIN_POSTMAP', '/usr/sbin/postmap');
 
-define('URLPAGE', 'http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]);
+//test if we are in secure mode
+$s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+define('URLPAGE', 'http'.$s.'://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]);
 
 // Email 
 define('EMAILTAGSUJET', '[EmailPoubelle]');
 // From de l'email
-define('EMAILFROM', '"NO REPLAY emailPoubelle" <emailpoubelle@exemple.fr>');
+define('EMAILFROM', '"NO REPLY emailPoubelle" <emailpoubelle@exemple.fr>');
 define('EMAILEND', 'exemple.fr');
 
 // Alisas interdit : (regex ligne par ligne) - commenter pour désactiver
