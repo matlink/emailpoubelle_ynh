@@ -1,8 +1,0 @@
-modify install script to add automatically : 
-
-virtual_alias_maps = hash:/var/www/emailpoubelle/var/virtual to /etc/postfix/main.cf
-
- and
- 
-devnull:/dev/null to /etc/aliases
-
