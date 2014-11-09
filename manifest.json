@@ -10,7 +10,8 @@
         "email": "david@mercereau.info",
         "url": "http://www.mercereau.info/sortie-de-la-version-1-0-demailpoubelle-php-email-jetable-auto-hebergeable/"
     },
-    "multi_instance": "true",
+    "multi_instance": "false",
+    "license": "Beerware",
     "arguments": {
         "install" : [
             {
@@ -42,7 +43,7 @@
                 "name": "public_site",
                 "ask": {
                     "en": "Should this application be public ?",
-                    "fr": "Est-ce que cette application doit visible publiquement ?"
+                    "fr": "Est-ce que cette application doit être visible publiquement ?"
                 },
                 "choices": ["Yes", "No"],
                 "default": "No"

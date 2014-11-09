@@ -24,7 +24,6 @@
 <!--[if IEMobile]>
 <link rel="stylesheet" href="/m/css/iemobile.css" media="screen" />
 <![endif]-->
-<!-Script that scrolls page up to the top -->
 <script type="text/javascript">
 window.scrollTo(0,1);
 </script>

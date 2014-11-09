@@ -2,64 +2,66 @@
 exec > >(tee /tmp/emailpoubelle.log)
 exec 2>&1
 app=emailpoubelle
+
 # Retrieve arguments
 domain=$1
 path=$2
 admin=$3
 is_public=$4
+
 # Save app settings
 sudo yunohost app setting $app admin -v "$admin"
 sudo yunohost app setting $app is_public -v "$is_public"
+
 # Check domain/path availability
 sudo yunohost app checkurl $domain$path -a $app
 if [[ ! $? -eq 0 ]]; then
 exit 1
 fi
+
 # Copy source files
 final_path=/var/www/$app
 sudo mkdir -p $final_path
-#Download from host
-#wget -O /tmp/emailPoubelle.zip http://forge.zici.fr/p/emailpoubelle-php/source/download/master/
-#unzip /tmp/emailPoubelle.zip
 sudo cp -R ../src/* $final_path
-sudo chown -R www-data:www-data $final_path
 
 #configuring with given settings
 sudo cp $final_path/conf-dist.php $final_path/conf.php
+sudo chown -R www-data:www-data $final_path
 sudo sed -i "s@exemple.fr@$domain@g" $final_path/conf.php
 sudo sed -i "s@exemple.com@$domain@g" $final_path/conf.php
 
 #generating random password for database
 db_pwd=$(dd if=/dev/urandom bs=1 count=200 2> /dev/null | tr -c -d '[A-Za-z0-9]' | sed -n 's/\(.\{24\}\).*/\1/p')
 db_user=emailPoubelle
-#write password to the conf file
 
+#write password to the conf file
 sudo sed -i "s@motdepassedefou@$db_pwd@g" $final_path/conf.php
+
+#setting conf file not world-readable (dude, there is a plain-text password !)
+sudo chmod o-r $final_path/conf.php
 
 #initialize database
 sudo yunohost app initdb $db_user -p $db_pwd
 
-#setting aliases
-sudo chmod g+w /etc/postfix/main.cf
-sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.emailpoubelle.bak
-sudo chmod g-w /etc/postfix/main.cf
+#setting postfix to use virtual aliases file
+sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.emailpoubelle.bak #backup it eventually if that causes some issues
 sudo echo "virtual_alias_maps = hash:$final_path/var/virtual" >> /etc/postfix/main.cf
+
 #create the virtual aliases file 
 sudo touch $final_path/var/virtual
 sudo postmap $final_path/var/virtual
 sudo chown www-data $final_path/var/virtual
 sudo chown www-data $final_path/var/virtual.db
+
 #create an alias for deleted junk adresses
-sudo cp /etc/aliases /etc/aliases.emailpoubelle.bak
-sudo chmod g+w /etc/aliases
+sudo cp /etc/aliases /etc/aliases.emailpoubelle.bak #backup it 
 sudo echo "devnull:/dev/null" >> /etc/aliases
-sudo chmod g-w /etc/aliases
 sudo newaliases
 
 # Modify Nginx configuration file and copy it to Nginx conf directory
 sudo sed -i "s@YNH_EXAMPLE_PATH@$path@g" ../conf/nginx.conf
 sudo sed -i "s@YNH_EXAMPLE_ALIAS@$final_path/www/@g" ../conf/nginx.conf
-sudo sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
+sudo cp ../conf/nginx.conf /etc/nginx/conf.d/$domain.d/$app.conf
 # If app is public, add url to SSOWat conf as skipped_uris
 if [ "$is_public" = "Yes" ];
 then
@@ -67,4 +69,5 @@ sudo yunohost app setting $app skipped_uris -v "/"
 fi
 # Restart services
 sudo service nginx reload
+sudo service postfix reload
 sudo yunohost app ssowatconf
