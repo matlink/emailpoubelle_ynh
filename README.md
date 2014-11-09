@@ -12,7 +12,7 @@ echo "devnull:/dev/null" >> /etc/aliases
 and do: newaliases && service postfix reload
 
 TODO : 
-
+------
 modify install script to add automatically :
 
 virtual_alias_maps = hash:/var/www/emailpoubelle/var/virtual to /etc/postfix/main.cf
