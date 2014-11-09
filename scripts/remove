@@ -15,3 +15,6 @@ sudo rm -f /etc/nginx/conf.d/$domain.d/emailpoubelle.conf
 sudo sed -i "s@devnull:/dev/null@@g" /etc/aliases
 sudo newaliases
 sudo sed -i "s@virtual_alias_maps = hash:/var/www/emailpoubelle/var/virtual@@g" /etc/postfix/main.cf
+sudo service postfix reload
+sudo nginx reload
+sudo yunohost app ssowatconf
