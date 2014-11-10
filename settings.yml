@@ -1,9 +1,0 @@
-admin: matlink
-domain: matlink.fr
-id: emailpoubelle
-install_time: 1415221885
-is_public: 'No'
-label: EmailPoubelle
-language: fr_FR
-path: /poubelle/
-skipped_uris: /
