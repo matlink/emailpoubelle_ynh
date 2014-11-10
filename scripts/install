@@ -1,6 +1,7 @@
 #!/bin/bash
-exec > >(tee /tmp/emailpoubelle.log)
-exec 2>&1
+# Write all logs to file
+#exec > >(tee /tmp/emailpoubelle.log)
+#exec 2>&1
 app=emailpoubelle
 
 # Retrieve arguments
