@@ -6,7 +6,7 @@ root_pwd=$(sudo cat /etc/yunohost/mysql)
 domain=$(sudo yunohost app setting emailpoubelle domain)
 postfix=/etc/postfix/main.cf
 #removing emailpoubelle database
-sudo mysql -u root -p $root_pwd -e "DROP DATABASE $db_name ; DROP USER $db_user@localhost ;"
+sudo mysql -u root -p$root_pwd -e "DROP DATABASE $db_name ; DROP USER $db_user@localhost ;"
 #removing emailpoubelle directory
 sudo rm -rf /var/www/emailpoubelle
 #removing nginx conf
