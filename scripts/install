@@ -10,6 +10,8 @@ path=$2
 admin=$3
 is_public=$4
 
+postfix=/etc/postfix/main.cf
+
 # Save app settings
 sudo yunohost app setting $app admin -v "$admin"
 sudo yunohost app setting $app is_public -v "$is_public"
@@ -45,8 +47,9 @@ sudo chmod o-r $final_path/conf.php
 sudo yunohost app initdb $db_user -p $db_pwd
 
 #setting postfix to use virtual aliases file
-sudo cp /etc/postfix/main.cf /etc/postfix/main.cf.emailpoubelle.bak #backup it eventually if that causes some issues
-echo  "virtual_alias_maps = hash:$final_path/var/virtual" | sudo tee -a /etc/postfix/main.cf
+sudo cp $postfix $postfix.emailpoubelle.bak #backup it eventually if that causes some issues
+sudo sed -i "s/^virtual_alias_maps/#virtual_alias_maps/g" $postfix
+echo  "virtual_alias_maps = hash:$final_path/var/virtual" | sudo tee -a $postfix
 
 #create the virtual aliases file 
 sudo touch $final_path/var/virtual
