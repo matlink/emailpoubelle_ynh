@@ -6,7 +6,6 @@
 <meta name="description" content="">
 <meta name="robots" content="index,follow,noarchive">
 <link rel="stylesheet" href="template-exemple/style.css">
-<link rel="shortcut icon" href="https://matlink.fr/poubelle/favicon.png"/>
 <!--[if IE]><script src="template-exemple/html5-ie.js"></script><![endif]--> 
 
 <meta name = "viewport" content = "user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width">
@@ -44,8 +43,17 @@ window.scrollTo(0,1);
 	<div id="a" style="float:left">
 		<div id="b">
 			<article style="float:left">
-				<h1>Emails poubelle libre</h1>
-				<p>Générer des emails poubelle sans contrainte de durée de vie. </p>
+			<?php
+				$lang = "en_GB";
+				$workaround_lang = "C.UTF-8";
+				putenv("LC_ALL=$workaround_lang");
+				setlocale(LC_ALL, $workaround_lang);
+				bindtextdomain("messages", "/var/www/emailpoubelle/locale/".$lang);
+				bind_textdomain_codeset('messages', 'UTF-8');
+				textdomain("messages");
+			?>
+				<h1><?php echo _("Emails poubelle libre") ?></h1>
+				<p><?php echo _("Générer des emails poubelle sans contrainte de durée de vie")?>. </p>
 				<?php 
 				// Intégration dans votre site :
 				if (file_exists('../conf.php')) {

@@ -1,2 +1,23 @@
 #!/bin/bash
+# Write all logs to file
+#exec > >(tee /tmp/emailpoubelle.log)
+#exec 2>&1
+app=emailpoubelle
 
+
+final_path=/var/www/emailpoubelle
+
+
+# Copy source files
+sudo mkdir -p $final_path
+sudo cp -R ../src/bin/ $final_path/bin
+sudo cp -R ../src/lib/ $final_path/lib
+sudo cp -R ../src/locale/ $final_path/locale
+sudo cp -R ../src/www/ $final_path/www
+sudo cp ../src/emailPoubelle.php $final_path/emailPoubelle.php
+sudo chown -R www-data:www-data $final_path
+
+# Restart services
+sudo service nginx reload
+sudo service postfix reload
+sudo yunohost app ssowatconf

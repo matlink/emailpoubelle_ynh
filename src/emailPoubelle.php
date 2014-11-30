@@ -21,35 +21,36 @@
 
 define('VERSION', '1.0');
 
+
 if (DEBUG) {
     error_reporting(E_ALL);
     ini_set('display_errors', 'On');
-	echo '<div class="highlight-2">Debug activé <br />';
+	echo '<div class="highlight-2">'._("Debug activé") .'<br />';
 	echo print_r($_REQUEST);
 	echo '</div>';
 }
 
 if (!defined('DOMAIN') || !defined('DATA') || !defined('DEBUG') || !defined('FICHIERALIAS') || !defined('DB')) {
-	echo '<div class="highlight-1">Erreur : Il ne semble pas que le fichier de configuration conf.php soit inclue car les constantes ne sont pas présentes.</div>';
+	echo '<div class="highlight-1">'._("Erreur : Il ne semble pas que le fichier de configuration conf.php soit inclue car les constantes ne sont pas présentes").'.</div>';
 // check writable work directory
 } else if (!is_writable(DATA)) {
-	echo '<div class="highlight-1">Erreur : le répertoire de travail ne peut pas être écrit. Merci de contacter l\'administrateur</div>';
+	echo '<div class="highlight-1">'._("Erreur : le répertoire de travail ne peut pas être écrit. Merci de contacter l\'administrateur").'</div>';
 // check alias file is_writable 
 } else if (!is_writable(FICHIERALIAS)) {
-	echo '<div class="highlight-1">Erreur : le fichier d\'alias ne peut pas être écrit. Merci de contacter l\'administrateur</div>';
+	echo '<div class="highlight-1">'._("Erreur : le fichier d\'alias ne peut pas être écrit. Merci de contacter l\'administrateur").'</div>';
 // check blacklist file is_writable
 } else if (defined('BLACKLIST') && !is_readable(BLACKLIST)) {
-    echo '<div class="highlight-1">Erreur : un fichier de blacklist est renseigné mais n\'est pas lisible. Merci de contacter l\'administrateur</div>';
+    echo '<div class="highlight-1">'._("Erreur : un fichier de blacklist est renseigné mais n\'est pas lisible. Merci de contacter l\'administrateur").'</div>';
 // check aliasdeny file is_writable
 } else if (defined('ALIASDENY') && !is_readable(ALIASDENY)) {
-    echo '<div class="highlight-1">Erreur : un fichier d\'alias interdit est renseigné mais n\'est pas lisible. Merci de contacter l\'administrateur</div>';
+    echo '<div class="highlight-1">'._("Erreur : un fichier d\'alias interdit est renseigné mais n\'est pas lisible. Merci de contacter l\'administrateur").'</div>';
 // maintenance mod
 } else if (MAINTENANCE_MODE == true && MAINTENANCE_IP != $_SERVER["REMOTE_ADDR"]) {
-	echo '<div class="highlight-2">Le service est en maintenance.</div>';
+	echo '<div class="highlight-2">'._("Le service est en maintenance.").'</div>';
 } else {
 
 if (MAINTENANCE_MODE == true) {
-	echo '<div class="highlight-2">Le service est en maintenance.</div>';
+	echo '<div class="highlight-2">'._("Le service est en maintenance.").'</div>';
 }
 
 // Connect DB
@@ -61,7 +62,7 @@ try {
 	}
 	$dbco->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch ( PDOException $e ) {
-	die('Connexion à la base '.$e->getMessage());
+	die('._("Connexion à la base ").'.$e->getMessage());
 }
 // Create DB if not exists
 try {
@@ -86,7 +87,7 @@ try {
 								comment TEXT);");
 	}
 } catch ( PDOException $e ) {
-	echo '<div class="highlight-1">Erreur à l\'initialisation des tables. Merci de contacter l\'administrateur ';
+	echo '<div class="highlight-1">'._("Erreur à l\'initialisation des tables. Merci de contacter l\'administrateur ");
 	if (DEBUG) { $e->getMessage(); }
 	echo '</div>';
 	die();
@@ -103,9 +104,9 @@ switch ($action) {
 		$get_value = urlUnGen($_GET['value']);
 		if ($dbco->query("SELECT COUNT(*) FROM ".DBTABLEPREFIX."alias WHERE id = '".$get_value['id']."' AND status = 0")->fetchColumn() != 0) {
 			UpdateStatusAlias($get_value['id'], $get_value['alias_full'], 5);
-			echo '<div class="highlight-3">Votre email poubelle <b>'.$get_value['alias_full'].'</b> est maintenant actif</div>';
+			echo '<div class="highlight-3">'._("Votre email poubelle").' <b>'.$get_value['alias_full'].'</b> '._("est maintenant actif").'</div>';
 		} else {
-			echo '<div class="highlight-1">Erreur : ID introuvable ou déjà validé</div>';
+			echo '<div class="highlight-1">'._("Erreur : ID introuvable ou déjà validé").'</div>';
 		}
 	break;
 	case "disable" :
@@ -122,10 +123,10 @@ switch ($action) {
 	break;
 	case "cron" :
 		if (CRON) {
-			echo '<div class="highlight-2">La tâche planifié est lancé</div>';
+			echo '<div class="highlight-2">'._("La tâche planifié est lancé").'</div>';
 			LifeExpire();
 		} else {
-			echo '<div class="highlight-1">Vous n\'avez pas autorisé le lancement par tâche planifié</div>';
+			echo '<div class="highlight-1">'._("Vous n\'avez pas autorisé le lancement par tâche planifié").'</div>';
 		}
 	break;
 }
@@ -135,13 +136,13 @@ if (isset($_POST['username']) && $_POST['username'] != '') { // minimal anti-spa
 } else if (isset($_POST['list'])) {
 	$email=strtolower(StripCleanToHtml($_POST['email']));
 	if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		echo '<div class="highlight-1">Erreur : Adresse email incorrect</div>';
+		echo '<div class="highlight-1">'._("Erreur : Adresse email incorrect").'</div>';
 	} else if (! VerifMXemail($email)) {
-		echo '<div class="highlight-1">Erreur : Adresse email incorrect (2)</div>';
+		echo '<div class="highlight-1">'._("Erreur : Adresse email incorrect (2)").'</div>';
 	} else if (ListeAlias($email)) {
-		echo '<div class="highlight-3">Un email vient de vous être envoyé</div>';
+		echo '<div class="highlight-3">'._("Un email vient de vous être envoyé").'</div>';
 	} else {
-		echo '<div class="highlight-1">Erreur : aucun email actif connu</div>';
+		echo '<div class="highlight-1">'._("Erreur : aucun email actif connu").'</div>';
 	}
 } else if (isset($_POST['email']) && isset($_POST['alias'])) {
 	$alias=strtolower(StripCleanToHtml($_POST['alias']));
@@ -152,54 +153,54 @@ if (isset($_POST['username']) && $_POST['username'] != '') { // minimal anti-spa
 	$alias_full=$alias.'@'.$domain;
 	// Check form
 	if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
-		echo '<div class="highlight-1">Erreur : Adresse email incorrect</div>';
+		echo '<div class="highlight-1">'._("Erreur : Adresse email incorrect").'</div>';
 	} else if (! VerifMXemail($email)) {
-		echo '<div class="highlight-1">Erreur : Adresse email incorrect (2)</div>';
+		echo '<div class="highlight-1">'._("Erreur : Adresse email incorrect (2)").'</div>';
 	} else if (! preg_match('#^[\w.-]+$#',$alias)) {
-		echo '<div class="highlight-1">Erreur : Format de l\'email poubelle incorrect</div>';
+		echo '<div class="highlight-1">'._("Erreur : Format de l\'email poubelle incorrect").'</div>';
 	} else if (! preg_match('#'.$domain.'#',DOMAIN)) {
-		echo '<div class="highlight-1">Erreur : ce domain n\'est pas pris en charge</div>';
+		echo '<div class="highlight-1">'._("Erreur : ce domain n\'est pas pris en charge").'</div>';
 	} else if (AliasDeny($alias)) {
-		echo '<div class="highlight-1">Erreur : email poubelle interdit</div>';
+		echo '<div class="highlight-1">'._("Erreur : email poubelle interdit").'</div>';
 	} else if (BlacklistEmail($email)) {
-		echo '<div class="highlight-1">Erreur : vous avez été blacklisté sur ce service</div>';
+		echo '<div class="highlight-1">'._("Erreur : vous avez été blacklisté sur ce service").'</div>';
 	// add 
 	} elseif (isset($_POST['add'])) {
 		if ($dbco->query("SELECT COUNT(*) FROM ".DBTABLEPREFIX."alias WHERE alias = '".$alias_full."'")->fetchColumn() != 0) {
-			echo '<div class="highlight-1">Erreur : cet email poubelle est déjà utilisé</div>';
+			echo '<div class="highlight-1">'._("Erreur : cet email poubelle est déjà utilisé").'</div>';
 		} else {
 			if ($dbco->query("SELECT COUNT(*) FROM ".DBTABLEPREFIX."alias WHERE email = '".$email."' AND status > 0")->fetchColumn() != 0) {
 				AjouterAlias(5, $alias_full, $email, $life, $comment);
-				echo '<div class="highlight-3">Votre email poubelle <b>'.$alias_full.' > '.$email.'</b> est maintenant actif</div>';
+				echo '<div class="highlight-3">'._("Votre email poubelle ").'<b>'.$alias_full.' > '.$email.'</b>'._(" est maintenant actif").'</div>';
 			} else {
 				$lastId=AjouterAlias(0, $alias_full, $email, $life, $comment);
-				$message= "Confirmation de la création de votre redirection email poubelle : ";
+				$message= _("Confirmation de la création de votre redirection email poubelle :");
 				$message= $alias_full.' => '.$email."\n";
-				$message= "Cliquer sur le lien ci-dessous pour confirmer : \n";
+				$message= _("Cliquer sur le lien ci-dessous pour confirmer : \n");
 				$message.= "\t * ".urlGen('validemail',$lastId,$alias_full)."\n";
 				$message.= "\n";
-				$message.= "Pour supprimer cet email poubelle vous pouvez vous rendre sur le lien ci-dessou : \n";
+				$message.= _("Pour supprimer cet email poubelle vous pouvez vous rendre sur le lien ci-dessous : \n");
 				$message.= "\t * ".urlGen('delete',$lastId,$alias_full)."\n";
 				$message.= "\n";
-				$message.= "Après confirmation, vous pourez suspendre temporairement cet email poubelle vous pouvez vous rendre sur le lien ci-dessou : \n";
+				$message.= _("Après confirmation, vous pourez suspendre temporairement cet email poubelle vous pouvez vous rendre sur le lien ci-dessou : \n");
 				$message.= "\t * ".urlGen('disable',$lastId,$alias_full)."\n";
-				SendEmail($email,'Confirmation alias '.$alias,$message);
-				echo '<div class="highlight-2">Votre email ('.$email.') nous étant inconnu, une confirmation vous a été envoyé par email.</div>';
+				SendEmail($email,_("Confirmation alias ").$alias,$message);
+				echo '<div class="highlight-2">'._("Votre email ").'('.$email.') '._("nous étant inconnu, une confirmation vous a été envoyé par email.").'</div>';
 			}
 		}
 	// delete
 	} else if (isset($_POST['del'])) {
 		if ($id = $dbco->query("SELECT id FROM ".DBTABLEPREFIX."alias WHERE email = '".$email."' AND alias = '".$alias_full."'")->fetchColumn()) {
-			$message= "Confirmation de la création de votre redirection email poubelle : ";
+			$message= _("Confirmation de la création de votre redirection email poubelle : ");
 			$message= $alias_full.' => '.$email."\n";
-			$message= "Cliquer sur le lien ci-dessous pour confirmer la suppression : \n";
+			$message= _("Cliquer sur le lien ci-dessous pour confirmer la suppression : \n");
 			$message.= "\t * ".urlGen('delete',$id,$alias_full)."\n\n";
-			$message.= "Sinon pour suspendre temporairement cet email poubelle vous pouvez vous rendre sur le lien ci-dessou : \n";
+			$message.= _("Sinon pour suspendre temporairement cet email poubelle vous pouvez vous rendre sur le lien ci-dessou : \n");
 			$message.= "\t * ".urlGen('disable',$id,$alias_full)."\n";
-			SendEmail($email,'Suppression de l\'alias '.$alias,$message);
-			echo '<div class="highlight-2">Un email de confirmation vient de vous être envoyé.</div>';
+			SendEmail($email,_("Suppression de l\'alias ").$alias,$message);
+			echo '<div class="highlight-2">'._("Un email de confirmation vient de vous être envoyé").'.</div>';
 		} else {
-			echo '<div class="highlight-1">Erreur : impossible de trouver cet email poubelle</div>';
+			echo '<div class="highlight-1">'._("Erreur : impossible de trouver cet email poubelle").'</div>';
 		}
 	// disable
 	} else if (isset($_POST['disable'])) {
@@ -225,22 +226,22 @@ if (isset($_POST['username']) && $_POST['username'] != '') { // minimal anti-spa
 
 <form action="<?= URLPAGE?>" method="post">
 <div id="onglet" style="display: none;">
-	<input type="button" value="Ajouter" id="onglet-add" onClick="ongletChange(this.id)" /> 
-	<input type="button" id="onglet-list" value="Lister" onClick="ongletChange(this.id)" /> 
-	<input type="button" id="onglet-del" value="Supprimer" onClick="ongletChange(this.id)" /> 
-	<input type="button" id="onglet-dis" value="Suspendre" onClick="ongletChange(this.id)" />
-	<input type="button" id="onglet-en" value="Reprendre" onClick="ongletChange(this.id)" />
+	<input type="button" value=<?php echo _("Ajouter") ?> id="onglet-add" onClick="ongletChange(this.id)" /> 
+	<input type="button" id="onglet-list" value=<?php echo _("Lister") ?> onClick="ongletChange(this.id)" /> 
+	<input type="button" id="onglet-del" value=<?php echo _("Supprimer") ?> onClick="ongletChange(this.id)" /> 
+	<input type="button" id="onglet-dis" value=<?php echo _("Suspendre") ?> onClick="ongletChange(this.id)" />
+	<input type="button" id="onglet-en" value=<?php echo _("Reprendre") ?> onClick="ongletChange(this.id)" />
 	<input type="hidden" name="onglet-actif" id="onglet-actif" value="onglet-add" />
 </div>
 <div id="form-email">
-	<label for="email">Votre email réel : </label>
+	<label for="email"><?php echo _("Votre email réel") ?> : </label>
 	<input type="text" name="email" <?php if (isset($_COOKIE['email'])) { echo 'value="'.$_COOKIE['email'].'"'; } ?> id="input-email" size="24" border="0"  onkeyup="printForm()" onchange="printForm()"  /> 
 	<input class="button2" type="submit" name="list" id="button-list" value="Lister" />
-	<input type="checkbox" name="memory" id="check-memory" <?php if (isset($_COOKIE['email'])) { echo 'checked="checked" '; } ?>/> Mémoriser
+	<input type="checkbox" name="memory" id="check-memory" <?php if (isset($_COOKIE['email'])) { echo 'checked="checked" '; } ?>/> <?php echo _("Mémoriser")?>
 </div>
 <div id="form-alias">
-	<label for="alias">Nom de l'email poubelle : </label>
-	<input type="text" name="alias" id="input-alias" size="24" border="0" onkeyup="printForm()" onchange="printForm()" placeholder="Ex : jean-petiteannonce" /> @<?php
+	<label for="alias"><?php echo _("Nom de l'email poubelle")?> : </label>
+	<input type="text" name="alias" id="input-alias" size="24" border="0" onkeyup="printForm()" onchange="printForm()" placeholder=<?php echo _("Ex : jean-petiteannonce") ?>/> @<?php
 		$domains = explode(';', DOMAIN);
 		if (count($domains) == 1) {
 			echo DOMAIN.'<input type="hidden" value="'.DOMAIN.'" name="domain" id="input-domain" />';
@@ -253,25 +254,25 @@ if (isset($_POST['username']) && $_POST['username'] != '') { // minimal anti-spa
 		}
 	?>
 	<select name="life" id="input-life">
-		<option value="0">Illimité</option>
-		<option value="7200">2 heure</option>
-		<option value="21600">6 heures</option>
-		<option value="86400">1 jour</option>
-		<option value="604800">7 jours</option>
-		<option value="1296000">15 jours</option>
-		<option value="2592000">30 jours</option>
-		<option value="7776000">90 jours</option>
+		<option value="0"><?php echo _("Illimité")?></option>
+		<option value="7200"><?php echo _("2 heure")?></option>
+		<option value="21600"><?php echo _("6 heures")?></option>
+		<option value="86400"><?php echo _("1 jour")?></option>
+		<option value="604800"><?php echo _("7 jours")?></option>
+		<option value="1296000"><?php echo _("15 jours")?></option>
+		<option value="2592000"><?php echo _("30 jours")?></option>
+		<option value="7776000"><?php echo _("90 jours")?></option>
 	</select>
 </div>
 <div id="form-comment">
-	<label for="comment">Un commentaire pour l'ajout ? (pour votre mémoire)</label>
-	<input type="text" name="comment" size="54" placeholder="Ex : Inscription sur zici.fr" />
+	<label for="comment"><?php echo _("Un commentaire pour l'ajout ? (pour votre mémoire)")?></label>
+	<input type="text" name="comment" size="54" placeholder=<?php echo _("Ex : Inscription sur zici.fr") ?>/>
 </div>
 <div id="form-submit">
-	<input class="button" type="submit" id="button-add" name="add" value="Activer" />
-	<input class="button" type="submit" id="button-del" name="del" value="Supprimer" />
-	<input class="button" type="submit" id="button-enable" name="enable" value="Reprendre" />
-	<input class="button" type="submit" id="button-disable" name="disable" value="Susprendre" />
+	<input class="button" type="submit" id="button-add" name="add" value=<?php echo _("Activer") ?> />
+	<input class="button" type="submit" id="button-del" name="del" value=<?php echo _("Supprimer") ?> />
+	<input class="button" type="submit" id="button-enable" name="enable" value=<?php echo _("Reprendre") ?> />
+	<input class="button" type="submit" id="button-disable" name="disable" value=<?php echo _("Suspendre") ?> />
 </div>
 <div id="lePecheur" style="display: none;">
 	<input name="username" type="text" />
@@ -357,8 +358,8 @@ if (isset($_POST['username']) && $_POST['username'] != '') { // minimal anti-spa
 	ongletPrint();
 	printForm();
 </script>
-<p>Version <?= VERSION ?> - Créé par David Mercereau sous licence GNU GPL v3</p>
-<p>Télécharger et utiliser ce script sur le site du projet <a target="_blank" href="http://forge.zici.fr/p/emailpoubelle-php/">emailPoubelle.php</a></p>
+<p><?php echo _("Version")?> <?= VERSION ?> - <?php echo _("Créé par David Mercereau sous licence GNU GPL v3")?></p>
+<p><?php echo _("Télécharger et utiliser ce script sur le site du projet")?> <a target="_blank" href="http://forge.zici.fr/p/emailpoubelle-php/">emailPoubelle.php</a></p>
 
 <?php 
 // execute lifeExpir if isn't in crontab

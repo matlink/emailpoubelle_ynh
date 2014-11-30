@@ -1,0 +1,397 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: EmailPoubelle\n"
+"POT-Creation-Date: 2014-11-30 20:35+0100\n"
+"PO-Revision-Date: 2014-11-30 22:37+0100\n"
+"Last-Translator: \n"
+"Language-Team: Matlink <matlink@matlink.fr>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: /home/hack4u/Documents/Yunohost/apps/"
+"emailpoubelle_ynh/src\n"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:28
+msgid "Debug activé"
+msgstr "Debug enabled"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:34
+msgid ""
+"Erreur : Il ne semble pas que le fichier de configuration conf.php soit "
+"inclue car les constantes ne sont pas présentes"
+msgstr ""
+"Error : the configuration file conf.php might not be included because the "
+"constants are not declared"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:37
+msgid ""
+"Erreur : le répertoire de travail ne peut pas être écrit. Merci de contacter "
+"l\\'administrateur"
+msgstr ""
+"Error : the working directory cannot be written. Please contact the admin"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:40
+msgid ""
+"Erreur : le fichier d\\'alias ne peut pas être écrit. Merci de contacter l"
+"\\'administrateur"
+msgstr "Error : the alias file cannot be written. Please contact the admin"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:43
+msgid ""
+"Erreur : un fichier de blacklist est renseigné mais n\\'est pas lisible. "
+"Merci de contacter l\\'administrateur"
+msgstr "Error : the blacklist file cannot be read. Please contact the admin"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:46
+msgid ""
+"Erreur : un fichier d\\'alias interdit est renseigné mais n\\'est pas "
+"lisible. Merci de contacter l\\'administrateur"
+msgstr ""
+"Error : the forbidden aliases file cannot be read. Please contact the admin"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:49
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:53
+msgid "Le service est en maintenance."
+msgstr "Service under maintenance."
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:90
+msgid ""
+"Erreur à l\\'initialisation des tables. Merci de contacter l"
+"\\'administrateur "
+msgstr "Error initializing tables. Please contact the admin"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:107
+msgid "Votre email poubelle"
+msgstr "Your throwable email address"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:107
+msgid "est maintenant actif"
+msgstr "is now enabled"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:109
+msgid "Erreur : ID introuvable ou déjà validé"
+msgstr "Error : unknown ID or already validated"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:126
+msgid "La tâche planifié est lancé"
+msgstr "The scheduled task is running"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:129
+msgid "Vous n\\'avez pas autorisé le lancement par tâche planifié"
+msgstr "You didn't allow the scheduled job"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:139
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:156
+msgid "Erreur : Adresse email incorrect"
+msgstr "Error : email address incorrect"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:141
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:158
+msgid "Erreur : Adresse email incorrect (2)"
+msgstr "Error : email address incorrect"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:143
+msgid "Un email vient de vous être envoyé"
+msgstr "An email has been sent to you"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:145
+msgid "Erreur : aucun email actif connu"
+msgstr "Error : no known active redirection "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:160
+msgid "Erreur : Format de l\\'email poubelle incorrect"
+msgstr "Error : throwable email address syntax incorrect"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:162
+msgid "Erreur : ce domain n\\'est pas pris en charge"
+msgstr "Error : this domain cannot be used"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:164
+msgid "Erreur : email poubelle interdit"
+msgstr "Error : throwable email address forbidden"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:166
+msgid "Erreur : vous avez été blacklisté sur ce service"
+msgstr "Error : you have been blacklisted"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:170
+msgid "Erreur : cet email poubelle est déjà utilisé"
+msgstr "Error : this redirection already exists"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:174
+msgid "Votre email poubelle "
+msgstr "Your throwable email address"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:174
+msgid " est maintenant actif"
+msgstr "is now enabled"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:177
+msgid "Confirmation de la création de votre redirection email poubelle :"
+msgstr "Confirmation of the creation of your redirection on Email Poubelle : "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:179
+msgid "Cliquer sur le lien ci-dessous pour confirmer : \n"
+msgstr "Click on the link below to validate : \n"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:182
+msgid ""
+"Pour supprimer cet email poubelle vous pouvez vous rendre sur le lien ci-"
+"dessous : \n"
+msgstr "To delete this redirection, click on the link below : \n"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:185
+msgid ""
+"Après confirmation, vous pourez suspendre temporairement cet email poubelle "
+"vous pouvez vous rendre sur le lien ci-dessou : \n"
+msgstr ""
+"After confirmation, you will be able to temporary suspend you redirection "
+"using the link below : \n"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:187
+msgid "Confirmation alias "
+msgstr "Alias confirmation"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:188
+msgid "Votre email "
+msgstr "Your email address"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:188
+msgid "nous étant inconnu, une confirmation vous a été envoyé par email."
+msgstr "is unknown, a confirmation has been sent to you"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:194
+msgid "Confirmation de la création de votre redirection email poubelle : "
+msgstr "Confirmation of the creation of your redirection on Email Poubelle : "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:196
+msgid "Cliquer sur le lien ci-dessous pour confirmer la suppression : \n"
+msgstr "Click on the link below to validate the deletion : \n"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:198
+msgid ""
+"Sinon pour suspendre temporairement cet email poubelle vous pouvez vous "
+"rendre sur le lien ci-dessou : \n"
+msgstr ""
+"If you would like to temporary suspend this redirection, you can follow the "
+"link bellow : \n"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:200
+msgid "Suppression de l\\'alias "
+msgstr "Alias deletion"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:201
+msgid "Un email de confirmation vient de vous être envoyé"
+msgstr "An email has been sent to you"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:203
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:115
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:143
+msgid "Erreur : impossible de trouver cet email poubelle"
+msgstr "Error : unknown redirection"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:229
+msgid "Ajouter"
+msgstr "Add"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:230
+msgid "Lister"
+msgstr "List"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:231
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:273
+msgid "Supprimer"
+msgstr "Delete"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:232
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:275
+msgid "Suspendre"
+msgstr "Suspend"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:233
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:274
+msgid "Reprendre"
+msgstr "Resume"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:237
+msgid "Votre email réel"
+msgstr "Your real email address"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:240
+msgid "Mémoriser"
+msgstr "Remember"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:243
+msgid "Nom de l'email poubelle"
+msgstr "Name of your throwable email address"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:244
+msgid "Ex : jean-petiteannonce"
+msgstr "Ex : john_smith"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:257
+msgid "Illimité"
+msgstr "Unlimited time"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:258
+msgid "2 heure"
+msgstr "2 hours"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:259
+msgid "6 heures"
+msgstr "6 hours"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:260
+msgid "1 jour"
+msgstr "1 day"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:261
+msgid "7 jours"
+msgstr "7 days"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:262
+msgid "15 jours"
+msgstr "15 days"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:263
+msgid "30 jours"
+msgstr "30 days"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:264
+msgid "90 jours"
+msgstr "90 days"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:268
+msgid "Un commentaire pour l'ajout ? (pour votre mémoire)"
+msgstr "Comment for this redirection (for your to remember)"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:269
+msgid "Ex : Inscription sur zici.fr"
+msgstr "Ex : mail for rubbish website"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:272
+msgid "Activer"
+msgstr "Activate"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:361
+msgid "Version"
+msgstr "Version"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:361
+msgid "Créé par David Mercereau sous licence GNU GPL v3"
+msgstr "Created by David Mercereau under licence GNU GPL v3"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/emailPoubelle.php:362
+msgid "Télécharger et utiliser ce script sur le site du projet"
+msgstr "Download and use this script on the project website"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:90
+msgid "l\\'email "
+msgstr "the email address"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:90
+msgid "a bien été supprimé"
+msgstr "has been deleted"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:96
+msgid "Erreur : email poubelle inconnu"
+msgstr "Error : unknown throwable email address"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:118
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:120
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:122
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:146
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:148
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:150
+msgid "La réception sur"
+msgstr "The redirection to"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:118
+msgid "est de nouveau active"
+msgstr "is back"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:120
+msgid "est déjà active"
+msgstr "is already enabled"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:122
+msgid "n\\'à pas été confirmé par email"
+msgstr "has not been confirmed by email"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:124
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:152
+msgid "Erreur : status inconnu"
+msgstr "Error : unknown status"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:146
+msgid "est maintenant suspendu"
+msgstr "is now in standby"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:148
+msgid "est déjà suspendu"
+msgstr "is already into standby"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:150
+msgid "ne peut être suspendu car elle n\\'a pas encore été activé"
+msgstr "cannot be suspend because it is not activated yet"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:224
+msgid "Liste de vos redirections poubelles active"
+msgstr "List of your enabled redirections"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:227
+msgid "Liste de vos redirections poubelles désactivé"
+msgstr "List of your disabled redirections"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:229
+msgid " Créé le "
+msgstr "Created the"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:231
+msgid " et expire le "
+msgstr "ends the "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:235
+msgid "Commentaire : "
+msgstr "Comment : "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:238
+msgid "Désactiver : "
+msgstr "Disable : "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:241
+msgid "Activer : "
+msgstr "Activate : "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:244
+msgid "Supprimer : "
+msgstr "Delete : "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:250
+msgid "Liste de vos "
+msgstr "List of yours "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:250
+msgid " redirection(s) poubelle(s)"
+msgstr "redirections"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:312
+msgid "Upgrade note : Votre version est en "
+msgstr "Upgrade note : Your version is "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/lib/ep_function.php:312
+msgid " alors que la version en cours est en "
+msgstr "while the current version is "
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/www/index.php:46
+msgid "Emails poubelle libre"
+msgstr "Free throwable email addresses"
+
+#: /home/hack4u/Documents/Yunohost/apps/emailpoubelle_ynh/src/www/index.php:47
+msgid "Générer des emails poubelle sans contrainte de durée de vie"
+msgstr "Create unlimited-time email redirections"

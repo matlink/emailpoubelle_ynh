@@ -87,13 +87,13 @@ function DeleteAlias($id, $alias_full) {
 			$deletecmd->bindParam('id', $id, PDO::PARAM_INT);
 			$deletecmd->bindParam('alias_full', $alias_full, PDO::PARAM_STR);
 			$deletecmd->execute();
-			echo '<div class="highlight-3">l\'email <b>'.$alias_full.'</b> a bien été supprimé</div>';
+			echo '<div class="highlight-3">'._("l\'email ").'<b>'.$alias_full.'</b> '._("a bien été supprimé").'</div>';
 		} catch ( PDOException $e ) {
 			echo "DB error :  ", $e->getMessage();
 			die();
 		}	
 	} else {
-		echo '<div class="highlight-1">Erreur : email poubelle inconnu</div>';
+		echo '<div class="highlight-1">'._("Erreur : email poubelle inconnu").'</div>';
 	}
 	UpdateVirtualDB();
 }
@@ -112,16 +112,16 @@ function EnableAlias($id, $alias_full, $email) {
 	$selectcmd->execute();
 	$alias_fetch = $selectcmd->fetch();
 	if (! $alias_fetch) {
-		echo '<div class="highlight-1">Erreur : impossible de trouver cet email poubelle</div>';
+		echo '<div class="highlight-1">'._("Erreur : impossible de trouver cet email poubelle").'</div>';
 	} else if ($alias_fetch['status'] == 3) {
 		UpdateStatusAlias($alias_fetch['id'], $alias_full, 5);
-		echo '<div class="highlight-3">La réception sur <b>'.$alias_full.'</b> est de nouveau active.</div>';
+		echo '<div class="highlight-3">'._("La réception sur").' <b>'.$alias_full.'</b> '._("est de nouveau active").'.</div>';
 	} else if ($alias_fetch['status'] == 5) {
-		echo '<div class="highlight-2">La réception sur <b>'.$alias_full.'</b> est déjà active.</div>';
+		echo '<div class="highlight-2">'._("La réception sur").' <b>'.$alias_full.'</b> '._("est déjà active").'.</div>';
 	} else if ($alias_fetch['status'] == 0) {
-		echo '<div class="highlight-1">La réception sur <b>'.$alias_full.'</b n\'à pas été confirmé par email.</div>';
+		echo '<div class="highlight-1">'._("La réception sur").' <b>'.$alias_full.'</b '._("n\'à pas été confirmé par email").'.</div>';
 	} else {
-		echo '<div class="highlight-1">Erreur : status inconnu</div>';
+		echo '<div class="highlight-1">'._("Erreur : status inconnu").'</div>';
 	}
 	UpdateVirtualDB();
 }
@@ -140,16 +140,16 @@ function DisableAlias($id, $alias_full, $email) {
 	$selectcmd->execute();
 	$alias_fetch = $selectcmd->fetch();
 	if (! $alias_fetch) {
-		echo '<div class="highlight-1">Erreur : impossible de trouver cet email poubelle</div>';
+		echo '<div class="highlight-1">'._("Erreur : impossible de trouver cet email poubelle").'</div>';
 	} else if ($alias_fetch['status'] == 5) {
 		UpdateStatusAlias($alias_fetch['id'], $alias_full, 3);
-		echo '<div class="highlight-3">La réception sur <b>'.$alias_full.'</b> est maintenant suspendu.</div>';
+		echo '<div class="highlight-3">'._("La réception sur").' <b>'.$alias_full.'</b> '._("est maintenant suspendu").'.</div>';
 	} else if ($alias_fetch['status'] == 3) {
-		echo '<div class="highlight-2">La réception sur <b>'.$alias_full.'</b> est déjà suspendu.</div>';
+		echo '<div class="highlight-2">'._("La réception sur").' <b>'.$alias_full.'</b> '._("est déjà suspendu").'.</div>';
 	} else if ($alias_fetch['status'] == 0) {
-		echo '<div class="highlight-1">La réception sur <b>'.$alias_full.'</b> ne peut être suspendu car elle n\'a pas encore été activé.</div>';
+		echo '<div class="highlight-1">'._("La réception sur").' <b>'.$alias_full.'</b> '._("ne peut être suspendu car elle n\'a pas encore été activé").'.</div>';
 	} else {
-		echo '<div class="highlight-1">Erreur : status inconnu</div>';
+		echo '<div class="highlight-1">'._("Erreur : status inconnu").'</div>';
 	}
 	UpdateVirtualDB();
 }
@@ -221,33 +221,33 @@ function ListeAlias($email) {
 	}
 	$nb_alias=0;
 	$nb_alias_disable=0;
-	$message= "## Liste de vos redirections poubelles active : \n\n";
+	$message= "## "._("Liste de vos redirections poubelles active")." : \n\n";
 	while($alias_db = $selectcmd->fetch()) {
 		if ($alias_db['status'] == 3 && $nb_alias_disable == 0) {
-			$message.= "## Liste de vos redirections poubelles désactivé : \n\n";
+			$message.= "## "._("Liste de vos redirections poubelles désactivé")." : \n\n";
 		} 
-		$message.=" * ".$alias_db['alias']." Créé le ".$alias_db['dateCreat'];
+		$message.=" * ".$alias_db['alias']._(" Créé le ").$alias_db['dateCreat'];
 		if ($alias_db['dateExpir']) {
-			$message.=" et expire le ".$alias_db['dateExpir'];
+			$message.=_(" et expire le ").$alias_db['dateExpir'];
 		}
 		$message.="\n";
 		if ($alias_db['comment']) {
-			$message.="\tCommentaire : ".$alias_db['comment']."\n";
+			$message.='\t'._("Commentaire : ").$alias_db['comment']."\n";
 		}
 		if ($alias_db['status'] == 5) {
-			$message.="\tDésactiver : ".urlGen('disable',$alias_db['id'],$alias_db['alias'])."\n";
+			$message.='\t'._("Désactiver : ").urlGen('disable',$alias_db['id'],$alias_db['alias'])."\n";
 			$nb_alias++;
 		} else {
-			$message.="\tActiver : ".urlGen('enable',$alias_db['id'],$alias_db['alias'])."\n";
+			$message.='\t'._("Activer : ").urlGen('enable',$alias_db['id'],$alias_db['alias'])."\n";
 			$nb_alias_disable++;
 		}
-		$message.="\tSupprimer : ".urlGen('delete',$alias_db['id'],$alias_db['alias'])."\n\n";
+		$message.='\t'._("Supprimer : ").urlGen('delete',$alias_db['id'],$alias_db['alias'])."\n\n";
 	}
 	$nb_alias_total = $nb_alias + $nb_alias_disable;
 	if ($nb_alias_total == 0) {
 		return false;
 	} else {
-		SendEmail($email,'Liste de vos '.$nb_alias_total.' redirection(s) poubelle(s)',$message);
+		SendEmail($email,_('Liste de vos ').$nb_alias_total._(' redirection(s) poubelle(s)'),$message);
 		return true;
 	}
 }
@@ -309,7 +309,7 @@ function CheckUpdate() {
 		} 
 		$file_current_version = trim(file_get_contents(DATA.'/checkupdate'));
 		if ($file_current_version != '' && $file_current_version != VERSION) {
-			return '<p>Upgrade note : Votre version est en '.VERSION.' alors que la version en cours est en '.$file_current_version.'</p>';
+			return '<p>'._("Upgrade note : Votre version est en ").VERSION._(' alors que la version en cours est en ').$file_current_version.'</p>';
 		} else {
 			return false;
 		}

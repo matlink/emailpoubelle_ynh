@@ -17,6 +17,7 @@ include_once(INC.'/ep_function.php');
 
 define('DEBUG', false);
 
+
 // Domain email (separe with ; exemple : exemple.com;zici.fr;exemple.fr)
 define('DOMAIN', 'exemple.fr');
 //define('DOMAIN', 'exemple.com;zici.fr;exemple.fr');
