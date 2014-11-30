@@ -44,17 +44,7 @@ window.scrollTo(0,1);
 		<div id="b">
 			<article style="float:left">
 			<?php
-				$lang = "en_GB";
-				$workaround_lang = "C.UTF-8";
-				putenv("LC_ALL=$workaround_lang");
-				setlocale(LC_ALL, $workaround_lang);
-				bindtextdomain("messages", "/var/www/emailpoubelle/locale/".$lang);
-				bind_textdomain_codeset('messages', 'UTF-8');
-				textdomain("messages");
-			?>
-				<h1><?php echo _("Emails poubelle libre") ?></h1>
-				<p><?php echo _("Générer des emails poubelle sans contrainte de durée de vie")?>. </p>
-				<?php 
+				ini_set('display_errors', 'On');
 				// Intégration dans votre site :
 				if (file_exists('../conf.php')) {
 					include('../conf.php');

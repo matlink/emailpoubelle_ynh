@@ -29,6 +29,8 @@ if (DEBUG) {
 	echo print_r($_REQUEST);
 	echo '</div>';
 }
+echo "<h1>". _("Emails poubelle libre")."</h1>";
+echo "<p>". _("Générer des emails poubelle sans contrainte de durée de vie"). "</p>";
 
 if (!defined('DOMAIN') || !defined('DATA') || !defined('DEBUG') || !defined('FICHIERALIAS') || !defined('DB')) {
 	echo '<div class="highlight-1">'._("Erreur : Il ne semble pas que le fichier de configuration conf.php soit inclue car les constantes ne sont pas présentes").'.</div>';

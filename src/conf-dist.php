@@ -17,6 +17,17 @@ include_once(INC.'/ep_function.php');
 
 define('DEBUG', false);
 
+$supported_locales = array('en_GB');
+define('Locale', "en_GB");
+if(isset($_GET['lang']) && in_array($_GET['lang'], $supported_locales)){
+	define('Locale', $_GET['lang']);
+}
+define('workaround_lang', "C.UTF-8");
+putenv("LC_ALL=".workaround_lang);
+setlocale(LC_ALL, workaround_lang);
+bindtextdomain("strings", "/var/www/emailpoubelle/locale/".Locale);
+bind_textdomain_codeset('strings', 'UTF-8');
+textdomain("strings");
 
 // Domain email (separe with ; exemple : exemple.com;zici.fr;exemple.fr)
 define('DOMAIN', 'exemple.fr');
