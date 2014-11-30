@@ -44,7 +44,7 @@ window.scrollTo(0,1);
 		<div id="b">
 			<article style="float:left">
 			<?php
-				ini_set('display_errors', 'On');
+				//ini_set('display_errors', 'On');
 				// Intégration dans votre site :
 				if (file_exists('../conf.php')) {
 					include('../conf.php');
