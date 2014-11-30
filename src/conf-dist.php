@@ -20,7 +20,7 @@ define('DEBUG', false);
 $supported_locales = array('en_GB');
 $locale = "en_GB";
 if(isset($_GET['lang']) && in_array($_GET['lang'], $supported_locales)){
-	$locale =  $_GET['lang']);
+	$locale =  $_GET['lang'];
 }
 define('workaround_lang', "C.UTF-8");
 putenv("LC_ALL=".workaround_lang);
