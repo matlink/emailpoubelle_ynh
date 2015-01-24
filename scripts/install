@@ -9,10 +9,13 @@ domain=$1
 path=$2
 admin=$3
 is_public=$4
+final_path=/var/www/$app
 
 postfix=/etc/postfix/main.cf
-# Check domain/path availability
 
+cronline="0 */2 * * * www-data cd $final_path/www/; /usr/bin/php index.php > /dev/null 2>&1"
+
+# Check domain/path availability
 sudo yunohost app checkurl $domain$path -a $app
 if [[ ! $? -eq 0 ]]; then
 exit 1
@@ -32,7 +35,6 @@ sudo yunohost app setting $app is_public -v "$is_public"
 
 
 # Copy source files
-final_path=/var/www/$app
 sudo mkdir -p $final_path
 sudo cp -R ../src/* $final_path
 
@@ -80,6 +82,14 @@ if [ "$is_public" = "Yes" ];
 then
 sudo yunohost app setting $app skipped_uris -v "/"
 fi
+
+#adding php-cli for cron
+sudo apt-get update -qq 
+sudo apt-get install -yqq php5-cli
+#adding cronjob for removing expired email addresses
+sudo echo "$cronline" | sudo tee -a /etc/cron.d/emailpoubelle 
+sudo chmod 644 /etc/cron.d/emailpoubelle 
+
 # Restart services
 sudo service nginx reload
 sudo service postfix reload

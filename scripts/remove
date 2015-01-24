@@ -16,6 +16,8 @@ sudo sed -i "/devnull:\/dev\/null/d" /etc/aliases
 sudo newaliases
 sudo sed -i "/virtual_alias_maps = hash:\/var\/www\/emailpoubelle\/var\/virtual/d" $postfix
 sudo sed -i "s/^#virtual_alias_maps/virtual_alias_maps/g" $postfix
+#remove cronjob
+sudo rm -f /etc/cron.d/emailpoubelle
 sudo service postfix reload
 sudo service nginx reload
 sudo yunohost app ssowatconf

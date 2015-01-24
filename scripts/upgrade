@@ -7,6 +7,7 @@ app=emailpoubelle
 
 final_path=/var/www/emailpoubelle
 
+cronline="0 */2 * * * www-data cd $final_path/www/; /usr/bin/php index.php > /dev/null 2>&1"
 
 # Copy source files
 sudo mkdir -p $final_path
@@ -16,6 +17,13 @@ sudo cp -R ../src/locale/ $final_path/locale
 sudo cp -R ../src/www/ $final_path/www
 sudo cp ../src/emailPoubelle.php $final_path/emailPoubelle.php
 sudo chown -R www-data:www-data $final_path
+
+#adding php-cli for cron
+sudo apt-get update -qq 
+sudo apt-get install -yqq php5-cli
+#adding cronjob for removing expired email addresses
+sudo echo "$cronline" | sudo tee -a /etc/cron.d/emailpoubelle 
+sudo chmod 644 /etc/cron.d/emailpoubelle 
 
 # Restart services
 sudo service nginx reload
